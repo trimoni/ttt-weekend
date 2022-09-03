@@ -1,8 +1,7 @@
 body {
     background-color: lightblue;
 	/* Use a system font, if none are available use an available sans-sarif   font */
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-		Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-family: 'Indie Flower', cursive;
 	margin: 50px;
   height: 100vh;
   display: flex;
@@ -21,12 +20,31 @@ section.board {
 
 div {
   border: 3px solid black;
-  font-size: 8vmin;
+  font-size: 7vmin;
   text-align: center;
   vertical-align: middle;
 }
 
-button.retry {
-  color: black;
+#reset-button {
+  padding: 5px 5px 5px 5px;
+  text-align: center;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
   background-color: red;
+}
+
+h1 {
+  font-size:70px;
+  background-image: 
+    linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet); 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;  
+  animation: move 35s linear infinite;
+}
+
+@keyframes move {
+  to {
+    background-position: 4500vh;
+  }
 }
