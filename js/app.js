@@ -20,13 +20,14 @@ let board, turn, winner
 /*------------------------ Cached Element References ------------------------*/
 const squareEls = document.querySelectorAll('.sq')
 const messageEl = document.querySelector('#message')
-console.log(squareEls)
+// console.log(squareEls)
+const resetBtnEl = document.querySelector('#reset-button')
 
 /*----------------------------- Event Listeners -----------------------------*/
 squareEls.forEach(function(squarre) {
   squarre.addEventListener('click', handleClick)
 })
-
+resetBtnEl.addEventListener('click', init)
 
 /*-------------------------------- Functions --------------------------------*/
 init()
@@ -44,27 +45,29 @@ function render() {
       squareEls[index].textContent = 'X' 
     } if (square === -1) {
       squareEls[index].textContent = 'O' 
-  }
+    } else if (square === null){
+      squareEls[index].textContent = ''
+    } 
 })
   if (winner === null){
     messageEl.textContent = `Player ${turn === 1 ? 'X' : 'O'} turn`
   } else if (winner === "T"){
     messageEl.textContent = `Tie`
   } else {
-    messageEl.textContent = `Player ${turn === 1 ? 'X' : 'O'} wins`
+    messageEl.textContent = `Player ${turn === 1 ? 'O' : 'X'} wins`
   }
 }
 
 function handleClick(evt) {
   const sqIdx = parseInt(evt.target.id.replace('sq', ''))
-  if(board[sqIdx] || !winner === null){
+  if(board[sqIdx] || winner !== null){
     return
   }
   board[sqIdx] = turn
+  turn *= -1
   winner = getWinner()
   console.log(winner, "winner")
   render()
-  turn *= -1
   console.log(board[sqIdx])
 }
 
@@ -81,8 +84,6 @@ function getWinner() {
   }
   return null
 }
-console.log(board)
-
 
 
 
