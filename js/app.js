@@ -10,7 +10,6 @@ const winningCombos = [
   [2, 4, 6]
 ]
 
-
 /*---------------------------- Variables (state) ----------------------------*/
 let board, turn, winner
 // board represents state of board
@@ -37,9 +36,12 @@ function init() {
   turn = 1
   winner = null
   render() 
+  resetBtnEl.setAttribute('hidden', true)
 }
 
 function render() {
+  resetBtnEl.removeAttribute('hidden')
+  resetBtnEl.className = 'retry'
   board.forEach((square, index) => {
     if(square === 1) {
       squareEls[index].textContent = 'X' 
@@ -52,7 +54,7 @@ function render() {
   if (winner === null){
     messageEl.textContent = `Player ${turn === 1 ? 'X' : 'O'} turn`
   } else if (winner === "T"){
-    messageEl.textContent = `Tie`
+    messageEl.textContent = `Tie, well that's too bad`
   } else {
     messageEl.textContent = `Player ${turn === 1 ? 'O' : 'X'} wins`
   }
