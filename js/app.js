@@ -18,12 +18,14 @@ let board, turn, winner
 // winner represents a win/tie
 
 /*------------------------ Cached Element References ------------------------*/
-const squareEls = document.querySelector('.board')
+const squareEls = document.querySelectorAll('.sq')
 const messageEl = document.querySelector('#message')
 console.log(squareEls)
 
 /*----------------------------- Event Listeners -----------------------------*/
-squareEls.addEventListener('click', handleClick)
+squareEls.forEach(function(squarre) {
+  squarre.addEventListener('click', handleClick)
+})
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -39,26 +41,47 @@ function init() {
 function render() {
   board.forEach((square, index) => {
     if(square === 1) {
-      squareEls[index].textContent = 'x' 
+      squareEls[index].textContent = 'X' 
     } if (square === -1) {
-      squareEls[index].textContent = 'o' 
+      squareEls[index].textContent = 'O' 
   }
 })
   if (winner === null){
-    // turn *= -1
     messageEl.textContent = `Player ${turn === 1 ? 'X' : 'O'} turn`
   } else if (winner === "T"){
     messageEl.textContent = `Tie`
   } else {
-    messageEl.textContent = `Player ${winner === 1 ? 'X' : 'O'} wins`
+    messageEl.textContent = `Player ${turn === 1 ? 'X' : 'O'} wins`
   }
 }
 
 function handleClick(evt) {
   const sqIdx = parseInt(evt.target.id.replace('sq', ''))
-  console.log(sqIdx)
+  if(board[sqIdx] || !winner === null){
+    return
+  }
+  board[sqIdx] = turn
+  winner = getWinner()
+  console.log(winner, "winner")
+  render()
+  turn *= -1
+  console.log(board[sqIdx])
 }
 
+function getWinner() {
+  if (!board.includes(null)){
+    return "T"
+  }
+  for (let i = 0; i < winningCombos.length; i++) {
+    if (board[winningCombos[i][0]] + board[winningCombos[i][1]] + board[winningCombos[i][2]] === 3) {
+      return 1
+    } else if (board[winningCombos[i][0]] + board[winningCombos[i][1]] + board[winningCombos[i][2]] === -3) {
+      return -1
+    } 
+  }
+  return null
+}
+console.log(board)
 
 
 
@@ -73,7 +96,7 @@ function handleClick(evt) {
 
 //// 5) Define the required constants
 
-// 6) Handle a player clicking a square with a `handleClick` function
+//// 6) Handle a player clicking a square with a `handleClick` function
 
 // 7) Build the `getWinner` function
 
