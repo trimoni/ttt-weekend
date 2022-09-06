@@ -7,7 +7,7 @@ const winningCombos = [
   [1, 4, 7],
   [2, 5, 8],
   [0, 4, 8],
-  [2, 4, 6]
+  [2, 4, 6],
 ]
 
 /*---------------------------- Variables (state) ----------------------------*/
@@ -74,15 +74,17 @@ function handleClick(evt) {
 }
 
 function getWinner() {
-  if (!board.includes(null)){
-    return "T"
-  }
   for (let i = 0; i < winningCombos.length; i++) {
+    console.log(board)
+    console.log([winningCombos[i][0]], [winningCombos[i][1]], [winningCombos[i][2]])
     if (board[winningCombos[i][0]] + board[winningCombos[i][1]] + board[winningCombos[i][2]] === 3) {
       return 1
     } else if (board[winningCombos[i][0]] + board[winningCombos[i][1]] + board[winningCombos[i][2]] === -3) {
       return -1
     } 
+  }
+  if (!board.includes(null)){
+    return "T"
   }
   return null
 }
@@ -101,6 +103,6 @@ function getWinner() {
 
 //// 6) Handle a player clicking a square with a `handleClick` function
 
-// 7) Build the `getWinner` function
+//// 7) Build the `getWinner` function
 
-// 8) Create Reset functionality
+//// 8) Create Reset functionality

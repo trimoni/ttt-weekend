@@ -18,7 +18,7 @@ section.board {
   padding-bottom: 10px;
 }
 
-div {
+.sq {
   border: 3px solid black;
   font-size: 7vmin;
   text-align: center;
@@ -31,7 +31,7 @@ div {
   width: 100px;
   margin-left: auto;
   margin-right: auto;
-  background-color: red;
+  background-color: red
 }
 
 h1 {
