@@ -57,6 +57,7 @@ function render() {
     messageEl.textContent = `🌧️🌧️🌧️TIE🌧️🌧️🌧️`
   } else {
     messageEl.textContent = `Player ${turn === 1 ? '🌚' : '🌞'} DOMINATES!`
+    confetti.start(2000)
   }
 }
 

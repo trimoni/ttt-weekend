@@ -18,7 +18,7 @@ section.board {
   padding-bottom: 10px;
 }
 
-.sq {
+div.sq {
   border: 3px solid black;
   font-size: 7vmin;
   text-align: center;
