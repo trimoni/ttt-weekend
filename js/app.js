@@ -18,6 +18,7 @@ let board, turn, winner
 
 /*------------------------ Cached Element References ------------------------*/
 const squareEls = document.querySelectorAll('.sq')
+//const squareEls = document.querySelectorAll(section > div)
 const messageEl = document.querySelector('#message')
 // console.log(squareEls)
 const resetBtnEl = document.querySelector('#reset-button')
@@ -52,6 +53,7 @@ function render() {
     } 
 })
   if (winner === null){
+    // !winner works too
     messageEl.textContent = `Player ${turn === 1 ? '🌞' : '🌚'} turn`
   } else if (winner === "T"){
     messageEl.textContent = `🌧️🌧️🌧️TIE🌧️🌧️🌧️`
@@ -69,15 +71,11 @@ function handleClick(evt) {
   board[sqIdx] = turn
   turn *= -1
   winner = getWinner()
-  console.log(winner, "winner")
   render()
-  console.log(board[sqIdx])
 }
 
 function getWinner() {
   for (let i = 0; i < winningCombos.length; i++) {
-    console.log(board)
-    console.log([winningCombos[i][0]], [winningCombos[i][1]], [winningCombos[i][2]])
     if (board[winningCombos[i][0]] + board[winningCombos[i][1]] + board[winningCombos[i][2]] === 3) {
       return 1
     } else if (board[winningCombos[i][0]] + board[winningCombos[i][1]] + board[winningCombos[i][2]] === -3) {
